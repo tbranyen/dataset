@@ -112,7 +112,7 @@ var request = require("request");
 
 // Include Miso Dataset lib
 /**
-* Miso.Dataset - v0.1.2 - 5/4/2012
+* Miso.Dataset - v0.1.2 - 5/10/2012
 * http://github.com/misoproject/dataset
 * Copyright (c) 2012 Alex Graul, Irene Ros;
 * Dual Licensed: MIT, GPL
@@ -213,17 +213,13 @@ var request = require("request");
       name : "number",
       regexp : /^[\-\.]?[0-9]+([\.][0-9]+)?$/,
       coerce : function(v) {
-        if (_.isNull(v) || v === "") {
+        if (_.isNull(v)) {
           return null;
         }
         return _.isNaN(v) ? null : +v;
       },
       test : function(v) {
-        if (v === null || typeof v === "undefined" || typeof v === 'number' || this.regexp.test( v ) ) {
-          return true;
-        } else {
-          return false;
-        }
+        return v == null || typeof v === 'number' || (this.regexp.test( v ) && typeof v !== 'string');
       },
       compare : function(n1, n2) {
         if (n1 == null && n2 != null) { return -1; }

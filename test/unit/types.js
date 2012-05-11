@@ -3,14 +3,14 @@
   var Util  = global.Util;
   var Miso    = global.Miso || {};  
 
-  var numbers = ['123', '0.34', '.23'];
+  var numbers = [123, 0.34, 0.23];
   
   module("Miso Numeric Type");
   test("Check number type", function() {
     var notNumbers = ['a', {}, 'll22'];
 
     _.each(numbers, function(num) {
-      ok(Miso.typeOf(num) === "number", "Value should be number");
+      ok(Miso.typeOf(num) === "number", "Value: " + num + " should be number");
       ok(Miso.types.number.test(num), "Should return true for a number");
     });
 
